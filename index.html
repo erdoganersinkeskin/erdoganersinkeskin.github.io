@@ -1,22 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Personal Website Demo</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Benim Portfolyom</title>
   <style>
-    body, html {
+    html, body {
       margin: 0;
       padding: 0;
+      height: 100%;
       background: black;
       overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
     }
+
     canvas {
-      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin: 0;
+      color: #00ffff;
+      text-shadow: 0 0 8px #00ffff80;
+    }
+
+    p {
+      max-width: 600px;
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      line-height: 1.6;
+      color: #ccc;
+    }
+
+    .socials {
+      margin-top: 2rem;
+    }
+
+    .socials a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #00ffff;
+      font-weight: bold;
+      border-bottom: 2px solid transparent;
+      transition: 0.3s;
+    }
+
+    .socials a:hover {
+      border-bottom: 2px solid #00ffff;
     }
   </style>
 </head>
 <body>
   <canvas id="sparkCanvas"></canvas>
+
+  <div class="content">
+    <h1>Benim Adım</h1>
+    <p>
+      Merhaba! Ben bir geliştiriciyim. Bu sayfa GitHub Pages üzerinde yayınladığım portfolyo sitemdir.
+      Burada projelerimi, becerilerimi ve bağlantılarımı bulabilirsiniz.
+    </p>
+
+    <div class="socials">
+      <a href="https://github.com/kullaniciadiniz" target="_blank">GitHub</a>
+      <a href="mailto:senin@email.com">Email</a>
+      <a href="https://linkedin.com/in/kullaniciadiniz" target="_blank">LinkedIn</a>
+    </div>
+  </div>
 
   <script>
     const canvas = document.getElementById('sparkCanvas');
@@ -49,16 +115,14 @@
     function update() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Yeni kıvılcım yarat
       if (Math.random() < 0.05) {
         createSpark();
       }
 
-      // Mevcut kıvılcımları çiz
       for (let i = 0; i < sparks.length; i++) {
         const s = sparks[i];
         ctx.beginPath();
-        ctx.strokeStyle = `rgba(173,216,230,${s.alpha})`; // LightBlue gibi
+        ctx.strokeStyle = `rgba(173,216,230,${s.alpha})`;
         ctx.lineWidth = 1.5;
         ctx.moveTo(s.x, s.y);
         ctx.lineTo(s.x + s.dx, s.y + s.dy);
